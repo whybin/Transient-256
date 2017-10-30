@@ -81,5 +81,5 @@ hi! link Todo WarningMsg
 " Git Groups {{{
 hi! link diffAdded DiffAdd
 hi! link diffChanged DiffChange
-hi! link diffRemoved DiffRemove
+hi! link diffRemoved DiffDelete
 " }}}
