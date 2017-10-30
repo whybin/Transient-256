@@ -29,6 +29,7 @@ endfunction
 " Default Groups {{{
 call <SID>highlight('Normal', s:c1, s:c0)
 call <SID>highlight('ColorColumn', 'NONE', s:c2)
+hi! link SignColumn ColorColumn
 call <SID>highlight('CursorLine', 'NONE', 'NONE')
 call <SID>highlight('Directory', s:c3)
 
@@ -38,6 +39,11 @@ hi! link FoldColumn Folded
 
 call <SID>highlight('NonText', s:c4)
 hi! link LineNr NonText
+
+call <SID>highlight('DiffAdd', s:c10, s:c2, 'bold')
+call <SID>highlight('DiffChange', s:c8, s:c2, 'bold')
+call <SID>highlight('DiffDelete', s:c5, s:c2, 'bold')
+call <SID>highlight('DiffText', 'NONE', s:c2)
 
 call <SID>highlight('MatchParen', s:c6, s:c3)
 hi! link ModeMsg MatchParen
