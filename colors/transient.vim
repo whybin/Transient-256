@@ -68,7 +68,6 @@ call <SID>highlight('Constant', s:c8)
 
 call <SID>highlight('Identifier', s:c9)
 hi! link Special Identifier
-call <SID>highlight('Function', s:c5)
 
 call <SID>highlight('Statement', s:c10)
 call <SID>highlight('PreProc', s:c6)
@@ -77,4 +76,10 @@ call <SID>highlight('Underlined', s:c10, s:c2)
 
 hi! link Error ErrorMsg
 hi! link Todo WarningMsg
+" }}}
+
+" Git Groups {{{
+hi! link diffAdded DiffAdd
+hi! link diffChanged DiffChange
+hi! link diffRemoved DiffRemove
 " }}}
