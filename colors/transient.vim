@@ -77,3 +77,9 @@ call <SID>highlight('Underlined', s:c10, s:c2)
 hi! link Error ErrorMsg
 hi! link Todo WarningMsg
 " }}}
+
+" Git Groups {{{
+hi! link diffAdded DiffAdd
+hi! link diffChanged DiffChange
+hi! link diffRemoved DiffRemove
+" }}}
