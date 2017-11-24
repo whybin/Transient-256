@@ -50,6 +50,7 @@ call <SID>highlight('ModeMsg', s:c6, s:c3)
 hi! link MoreMsg ModeMsg
 call <SID>highlight('ErrorMsg', s:c6, s:c5, 'bold')
 call <SID>highlight('WarningMsg', s:c8, s:c2, 'bold')
+call <SID>highlight('Title', s:c6)
 
 call <SID>highlight('StatusLine', s:c3, s:c2)
 call <SID>highlight('StatusLineNC', 'NONE', s:c2)
