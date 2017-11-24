@@ -8,7 +8,7 @@ endif
 let g:colors_name='transient'
 
 let s:c0=236  " Dark gray
-let s:c1=109  " Grayish blue-green
+let s:c1=103  " Grayish violet
 let s:c2=235  " Darker gray
 let s:c3=105  " Violet
 let s:c4=240  " Light gray
@@ -37,6 +37,7 @@ call <SID>highlight('VertSplit', s:c1, s:c1)
 call <SID>highlight('Folded', s:c5, s:c2)
 hi! link FoldColumn Folded
 
+call <SID>highlight('MatchParen', s:c6, s:c7, 'bold')
 call <SID>highlight('NonText', s:c4)
 hi! link LineNr NonText
 
@@ -45,9 +46,8 @@ call <SID>highlight('DiffChange', s:c8, s:c2, 'bold')
 call <SID>highlight('DiffDelete', s:c5, s:c2, 'bold')
 call <SID>highlight('DiffText', 'NONE', s:c2)
 
-call <SID>highlight('MatchParen', s:c6, s:c3)
-hi! link ModeMsg MatchParen
-hi! link MoreMsg MatchParen
+call <SID>highlight('ModeMsg', s:c6, s:c3)
+hi! link MoreMsg ModeMsg
 call <SID>highlight('ErrorMsg', s:c6, s:c5, 'bold')
 call <SID>highlight('WarningMsg', s:c8, s:c2, 'bold')
 
