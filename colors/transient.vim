@@ -52,11 +52,11 @@ call <SID>highlight('ErrorMsg', s:c6, s:c5, 'bold')
 call <SID>highlight('WarningMsg', s:c8, s:c2, 'bold')
 call <SID>highlight('Title', s:c6)
 
-call <SID>highlight('StatusLine', s:c3, s:c2)
-call <SID>highlight('StatusLineNC', 'NONE', s:c2)
-hi! link CursorLineNr StatusLine
-hi! link Pmenu StatusLine
-hi! link PmenuSbar StatusLine
+call <SID>highlight('StatusLine', s:c2, s:c3)
+call <SID>highlight('StatusLineNC', s:c3, s:c2)
+hi! link CursorLineNr StatusLineNC
+hi! link Pmenu StatusLineNC
+hi! link PmenuSbar StatusLineNC
 call <SID>highlight('Search', s:c2, s:c3)
 hi! link PmenuSel Search
 hi! link Question Search
