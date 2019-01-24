@@ -63,9 +63,11 @@ function! s:Highlight(group, fg, ...)
                 \a:group, a:fg, bg, attr)
 
     if has('gui_running')
-        let guifg = s:XtermToGui(a:fg)
-        let guibg = exists('a:1') ? s:XtermToGui(a:1) : 'NONE'
-        let exec_str .= printf(' guifg=%s guibg=%s gui=%s', guifg, guibg, attr)
+        let guifg = a:fg != 'NONE' ? s:XtermToGui(a:fg) : a:fg
+        let guibg = exists('a:1') && a:1 != 'NONE' ? s:XtermToGui(a:1) : 'NONE'
+        let guisp = attr =~ 'under' ? 'guisp=' . guifg : ''
+        let exec_str .= printf(
+                    \' guifg=%s guibg=%s gui=%s %s', guifg, guibg, attr, guisp)
     endif
 
     exec exec_str
