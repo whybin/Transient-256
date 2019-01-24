@@ -75,10 +75,13 @@ endfunction
 
 " Default Groups {{{
 call s:Highlight('Normal', s:c1, s:c0)
-call s:Highlight('ColorColumn', 'NONE', s:c2)
+call s:Highlight('ColorColumn', 'NONE', s:c2, 'NONE')
 hi! link SignColumn ColorColumn
-call s:Highlight('CursorLine', 'NONE', 'NONE')
+hi! link CursorColumn ColorColumn
+hi! link CursorLine ColorColumn
+call s:Highlight('Cursor', 'NONE', s:c7)
 call s:Highlight('Directory', s:c3)
+call s:Highlight('SpecialKey', s:c6)
 
 call s:Highlight('VertSplit', s:c1, s:c1)
 call s:Highlight('Folded', s:c5, s:c2)
@@ -88,10 +91,10 @@ call s:Highlight('MatchParen', s:c6, s:c7, 'bold')
 call s:Highlight('NonText', s:c4)
 hi! link LineNr NonText
 
-call s:Highlight('DiffAdd', s:c10, s:c2, 'bold')
-call s:Highlight('DiffChange', s:c8, s:c2, 'bold')
-call s:Highlight('DiffDelete', s:c5, s:c2, 'bold')
-call s:Highlight('DiffText', 'NONE', s:c2)
+call s:Highlight('DiffAdd', s:c10, s:c7, 'bold')
+call s:Highlight('DiffChange', s:c8, s:c7, 'bold')
+call s:Highlight('DiffDelete', s:c5, s:c7, 'bold')
+call s:Highlight('DiffText', 'NONE', s:c2, 'bold')
 
 call s:Highlight('ModeMsg', s:c6, s:c3)
 hi! link MoreMsg ModeMsg
@@ -104,10 +107,22 @@ call s:Highlight('StatusLineNC', s:c3, s:c2)
 hi! link CursorLineNr StatusLineNC
 hi! link Pmenu StatusLineNC
 hi! link PmenuSbar StatusLineNC
+call s:Highlight('PmenuThumb', s:c6, s:c6)
 call s:Highlight('Search', s:c2, s:c3)
+call s:Highlight('IncSearch', s:c2, s:c5)
 hi! link PmenuSel Search
 hi! link Question Search
 call s:Highlight('Visual', 'NONE', s:c7)
+hi! link WildMenu IncSearch
+
+call s:Highlight('TabLine', s:c10, s:c2)
+hi! link TabLineFill TabLine
+hi! link TabLineSel StatusLine
+
+call s:Highlight('SpellBad', s:c5, s:c2, 'undercurl')
+call s:Highlight('SpellCap', s:c3, s:c2, 'undercurl')
+call s:Highlight('SpellLocal', 'NONE', s:c2)
+call s:Highlight('SpellRare', 'NONE', s:c2)
 " }}}
 
 " Syntax Groups {{{
@@ -127,7 +142,8 @@ hi! link Todo WarningMsg
 " }}}
 
 " Git Groups {{{
-hi! link diffAdded DiffAdd
-hi! link diffChanged DiffChange
-hi! link diffRemoved DiffDelete
+call s:Highlight('diffAdded', s:c10, s:c2, 'bold')
+call s:Highlight('diffChanged', s:c8, s:c2, 'bold')
+call s:Highlight('diffRemoved', s:c5, s:c2, 'bold')
+" }}}
 " }}}
