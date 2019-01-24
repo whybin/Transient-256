@@ -1,6 +1,10 @@
-" Transient - A dark colorscheme for xterm-256color
-set background=dark
+" Transient 256 - A dark Vim color scheme for xterm-256color
+"
+" Author: whybin
+" Homepage: https://github.com/whybin/Transient-256
+
 hi clear
+
 if exists('syntax_on')
     syntax reset
 endif
@@ -14,12 +18,13 @@ let s:c3=105  " Violet
 let s:c4=240  " Light gray
 let s:c5=204  " Rose red
 let s:c6=194  " Pale chartreuse
-let s:c7=60   " Grayish violet
+let s:c7=60   " Dark grayish violet
 let s:c8=222  " Yellow
 let s:c9=132  " Deep rose
 let s:c10=43  " Sea green
 let s:c11=111 " Blue violet
 
+" Functions {{{
 function! s:ToHex(val)
     return a:val == 0 ? 0 : a:val * 40 + 55
 endfunction
@@ -72,6 +77,7 @@ function! s:Highlight(group, fg, ...)
 
     exec exec_str
 endfunction
+" }}}
 
 set background=dark
 
