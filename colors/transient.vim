@@ -55,69 +55,70 @@ function! s:XtermToGui(xterm_color)
     endif
 endfunction
 
-function! s:highlight(group, fg, ...)
+function! s:Highlight(group, fg, ...)
     let bg = exists('a:1') ? a:1 : 'NONE'
     let attr = 'NONE,' . (exists('a:2') ? a:2 : '')
-    let exec_str = 'hi ' . a:group . ' ctermfg=' . a:fg . ' ctermbg=' . bg
-                \. ' cterm=' . attr
+    let exec_str = printf(
+                \'hi %s ctermfg=%s ctermbg=%s cterm=%s',
+                \a:group, a:fg, bg, attr)
 
     if has('gui_running')
         let guifg = s:XtermToGui(a:fg)
         let guibg = exists('a:1') ? s:XtermToGui(a:1) : 'NONE'
-        let exec_str .= ' guifg=' . guifg . ' guibg=' . guibg . ' gui=' . attr
+        let exec_str .= printf(' guifg=%s guibg=%s gui=%s', guifg, guibg, attr)
     endif
 
     exec exec_str
 endfunction
 
 " Default Groups {{{
-call <SID>highlight('Normal', s:c1, s:c0)
-call <SID>highlight('ColorColumn', 'NONE', s:c2)
+call s:Highlight('Normal', s:c1, s:c0)
+call s:Highlight('ColorColumn', 'NONE', s:c2)
 hi! link SignColumn ColorColumn
-call <SID>highlight('CursorLine', 'NONE', 'NONE')
-call <SID>highlight('Directory', s:c3)
+call s:Highlight('CursorLine', 'NONE', 'NONE')
+call s:Highlight('Directory', s:c3)
 
-call <SID>highlight('VertSplit', s:c1, s:c1)
-call <SID>highlight('Folded', s:c5, s:c2)
+call s:Highlight('VertSplit', s:c1, s:c1)
+call s:Highlight('Folded', s:c5, s:c2)
 hi! link FoldColumn Folded
 
-call <SID>highlight('MatchParen', s:c6, s:c7, 'bold')
-call <SID>highlight('NonText', s:c4)
+call s:Highlight('MatchParen', s:c6, s:c7, 'bold')
+call s:Highlight('NonText', s:c4)
 hi! link LineNr NonText
 
-call <SID>highlight('DiffAdd', s:c10, s:c2, 'bold')
-call <SID>highlight('DiffChange', s:c8, s:c2, 'bold')
-call <SID>highlight('DiffDelete', s:c5, s:c2, 'bold')
-call <SID>highlight('DiffText', 'NONE', s:c2)
+call s:Highlight('DiffAdd', s:c10, s:c2, 'bold')
+call s:Highlight('DiffChange', s:c8, s:c2, 'bold')
+call s:Highlight('DiffDelete', s:c5, s:c2, 'bold')
+call s:Highlight('DiffText', 'NONE', s:c2)
 
-call <SID>highlight('ModeMsg', s:c6, s:c3)
+call s:Highlight('ModeMsg', s:c6, s:c3)
 hi! link MoreMsg ModeMsg
-call <SID>highlight('ErrorMsg', s:c6, s:c5, 'bold')
-call <SID>highlight('WarningMsg', s:c8, s:c2, 'bold')
-call <SID>highlight('Title', s:c6)
+call s:Highlight('ErrorMsg', s:c6, s:c5, 'bold')
+call s:Highlight('WarningMsg', s:c8, s:c2, 'bold')
+call s:Highlight('Title', s:c6)
 
-call <SID>highlight('StatusLine', s:c2, s:c3)
-call <SID>highlight('StatusLineNC', s:c3, s:c2)
+call s:Highlight('StatusLine', s:c2, s:c3)
+call s:Highlight('StatusLineNC', s:c3, s:c2)
 hi! link CursorLineNr StatusLineNC
 hi! link Pmenu StatusLineNC
 hi! link PmenuSbar StatusLineNC
-call <SID>highlight('Search', s:c2, s:c3)
+call s:Highlight('Search', s:c2, s:c3)
 hi! link PmenuSel Search
 hi! link Question Search
-call <SID>highlight('Visual', 'NONE', s:c7)
+call s:Highlight('Visual', 'NONE', s:c7)
 " }}}
 
 " Syntax Groups {{{
-call <SID>highlight('Comment', s:c4)
-call <SID>highlight('Constant', s:c8)
+call s:Highlight('Comment', s:c4)
+call s:Highlight('Constant', s:c8)
 
-call <SID>highlight('Identifier', s:c9)
+call s:Highlight('Identifier', s:c9)
 hi! link Special Identifier
 
-call <SID>highlight('Statement', s:c10)
-call <SID>highlight('PreProc', s:c6)
-call <SID>highlight('Type', s:c11)
-call <SID>highlight('Underlined', s:c10, s:c2)
+call s:Highlight('Statement', s:c10)
+call s:Highlight('PreProc', s:c6)
+call s:Highlight('Type', s:c11)
+call s:Highlight('Underlined', s:c10, s:c2)
 
 hi! link Error ErrorMsg
 hi! link Todo WarningMsg
