@@ -73,6 +73,8 @@ function! s:Highlight(group, fg, ...)
     exec exec_str
 endfunction
 
+set background=dark
+
 " Default Groups {{{
 call s:Highlight('Normal', s:c1, s:c0)
 call s:Highlight('ColorColumn', 'NONE', s:c2, 'NONE')
