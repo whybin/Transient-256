@@ -20,10 +20,52 @@ let s:c9=132  " Deep rose
 let s:c10=43  " Sea green
 let s:c11=111 " Blue violet
 
+function! s:ToHex(val)
+    return a:val == 0 ? 0 : a:val * 40 + 55
+endfunction
+
+" Encodes the (reversed) 'on' bits of `val` with the value `mult`
+" Ex: s:BitEncode(4, 0xff) = 0x0000ff
+function! s:BitEncode(val, mult)
+    return (and(a:val, 0x1) * 65536 + and(a:val, 0x2) * 256 + and(a:val, 0x4))
+                \* a:mult
+endfunction
+
+function! s:XtermToGui(xterm_color)
+    if a:xterm_color >= 232
+        let hex = (a:xterm_color - 232) * 10 + 8
+        return printf('#%x%x%x', hex, hex, hex)
+    elseif a:xterm_color >= 16
+        let tmp = a:xterm_color - 16
+        return printf('#%x%x%x',
+                    \ s:ToHex(tmp / 36),
+                    \ s:ToHex((tmp % 36) / 6),
+                    \ s:ToHex(tmp % 6))
+    elseif a:xterm_color >= 9
+        " Add 1 to value to encode
+        return printf('#%x', s:BitEncode(a:xterm_color - 8, 0xff))
+    elseif a:xterm_color == 8
+        return '#808080'
+    elseif a:xterm_color == 7
+        return '#c0c0c0'
+    else
+        return printf('#%x', s:BitEncode(a:xterm_color, 0x80))
+    endif
+endfunction
+
 function! s:highlight(group, fg, ...)
-    exec 'hi ' . a:group . ' ctermfg=' . a:fg
-                \. ' ctermbg=' . (exists('a:1') ? a:1 : 'NONE')
-                \. ' cterm=NONE,' . (exists('a:2') ? a:2 : '')
+    let bg = exists('a:1') ? a:1 : 'NONE'
+    let attr = 'NONE,' . (exists('a:2') ? a:2 : '')
+    let exec_str = 'hi ' . a:group . ' ctermfg=' . a:fg . ' ctermbg=' . bg
+                \. ' cterm=' . attr
+
+    if has('gui_running')
+        let guifg = s:XtermToGui(a:fg)
+        let guibg = exists('a:1') ? s:XtermToGui(a:1) : 'NONE'
+        let exec_str .= ' guifg=' . guifg . ' guibg=' . guibg . ' gui=' . attr
+    endif
+
+    exec exec_str
 endfunction
 
 " Default Groups {{{
